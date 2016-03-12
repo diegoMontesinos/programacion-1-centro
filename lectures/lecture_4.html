@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Fundamentos de Programación - CENTRO - Clase #4 [26/02]</title>
+
+    <meta name="description" content="Material de apoyo para la clase #4.">
+    <meta name="author" content="Diego Montesinos">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css" id="theme">
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h2>Principios y fundamentos de Programación</h2>
+          <h3>Clase #4</h3>
+          <img data-src="img/lecture_4/brickpattern.jpg">
+          <p>
+            <small>Especialidad en Código Creativo | CENTRO 2016</small>
+          </p>
+        </section>
+
+        <!-- REPASO CLASE ANTERIOR -->
+        <section data-background-transition="zoom">
+          <section data-background="img/previously.jpg"></section>
+          <section>
+            <ul>
+              <li>
+                Variables:<br>
+                <code>int</code>, <code>char</code>, <code>float</code>, <code>boolean</code>
+              </li>
+              <li>
+                Condicionales:<br>
+                <code>if (test) {}</code><br>
+                <code>if (test) {} else {}</code><br>
+                <code>if (test1) {} else if(test2) {}</code><br>
+              </li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- INDICE CLASE -->
+        <section>
+          <section>
+            <h2>En esta clase...</h2>
+            <p>
+              <ul>
+                <li>
+                  Bucles (a.k.a loops): ¿Qué es iterar?
+                </li>
+                <li>
+                  Bucles en Processing:<br>
+                  <code>while</code>, <code>for</code>
+                </li>
+                <li>
+                  Bucles de bucles
+                </li>
+                <li>
+                  Funciones
+                </li>
+              </ul>
+            </p>
+          </section>
+        </section>
+
+        <!-- LOOPS -->
+        <section>
+          <section>
+            <h2>Bucles (a.k.a loops)</h2>
+            <p>
+              Hacer un bucle es el proceso de repetir un conjunto de
+              instrucciones, o de acciones.
+            </p>
+          </section>
+
+          <section>
+            <h2>Bucles (por ejemplo...)</h2>
+            <img width="400" data-src="https://media.giphy.com/media/aLdiZJmmx4OVW/giphy.gif">
+          </section>
+
+          <section>
+            <h2>Bucles (por ejemplo...)</h2>
+            <img height="250" data-src="https://i.ytimg.com/vi/Y8CVLRWS2qE/maxresdefault.jpg">
+            <img height="250" data-src="http://images.wisegeek.com/laying-brick-wall.jpg">
+          </section>
+
+          <section>
+            <h2>Bucles</h2>
+            <p>
+              A cada repetición que se hace en un bucle se le
+              conoce como iteración. Es por esto que a los bucles
+              también se le conoce como Iteraciones.
+            </p>
+          </section>
+
+          <section>
+            <h2>Bucles (otro por ejemplo...)</h2>
+            <img height="450" data-src="img/lecture_4/inspirografo01.jpg">
+          </section>
+        </section>
+
+        <!-- WHILE -->
+        <section>
+          <section>
+            <h2>Pintar muchas líneas...</h2>
+            <img height="450" data-src="img/lecture_4/lines1.png">
+          </section>
+
+          <section>
+            <h2>Pintar muchas líneas...</h2>
+            <pre><code class="hljs" style="word-wrap: break-word;">
+              size(200, 200);
+              background(255);
+
+              // Lineas
+              stroke(0);
+              line(50, 60, 50, 80);
+              line(60, 60, 60, 80);
+              line(70, 60, 70, 80);
+              line(80, 60, 80, 80);
+              line(90, 60, 90, 80);
+              line(100, 60, 100, 80);
+              line(110, 60, 110, 80);
+              line(120, 60, 120, 80);
+              line(130, 60, 130, 80);
+            </code></pre>
+          </section>
+
+          <section>
+            <h2>Pintar muchas líneas...</h2>
+            <pre><code class="hljs" style="word-wrap: break-word;">
+              size(200, 200);
+              background(255);
+
+              // Lineas
+              stroke(0);
+              int y = 80; // Posicion en y de las lineas
+              int x = 50; // Posicion en x de las lineas
+              int spacing = 10; // Espacio entre lineas
+              int len = 20; // Largo de cada linea
+
+              line(x, y, x, y + len);
+              x = x + spacing;
+
+              line(x, y, x, y + len);
+              x = x + spacing;
+            </code></pre>
+          </section>
+
+          <section>
+            <h2>Pintar muchas líneas...</h2>
+            <p>
+              El algoritmo sería:
+              <ol>
+                <li>Guarda la posición en X de la línea, comienza en 30.</li>
+                <li>MIENTRAS no hayas llegado a 100px en X<ol>
+                    <li>Dibuja una línea usando la coordenada X.</li>
+                    <li>Mueve la posición X 10 pixeles.</li>
+                </ol></li>
+              </ol>
+            </p>
+          </section>
+
+          <section>
+            <h2>while</h2>
+            <p>
+              Como te puedes dar cuenta, el algoritmo anterior
+              repite la acción (pintar lineas) hasta que se deja de cumplir
+              una cierta condición.
+              <br>
+              Esta condición se prueba al dibujar cada línea,
+              y se debe tomar una decisión: detenerse o repetir.
+            </p>
+          </section>
+
+          <section>
+            <h2>while</h2>
+            <p>
+              En Processing, la estructura <code>while</code> se ocupa
+              para ejecutar un bloque de código mientras una condición
+              es cierta.<br><br>
+              Igual que la estructura <code>if</code>, <code>while</code>
+              ocupa una expresión booleana para expresar esa condición.
+            </p>
+          </section>
+
+          <section>
+            <h2>while - Semántica</h2>
+            <img data-src="img/lecture_4/while_semantic.png">
+          </section>
+
+          <section>
+            <h2>while - Sintáxis</h2>
+            <pre><code class="hljs" style="word-wrap: break-word;">
+              while(< test >) {
+                // Instrucciones que se repetirán
+              }
+            </code></pre>
+          </section>
+
+          <section>
+            <h2>while - Ejemplo</h2>
+            <p>
+              Si programamos el algoritmo anterior:
+              <pre><code class="hljs" style="word-wrap: break-word;">
+                size(200, 200);
+                background(255);
+
+                // Lineas
+                stroke(0);
+                int y = 80; // Posicion en y de las lineas
+                int x = 50; // Posicion en x de las lineas
+                int spacing = 10; // Espacio entre lineas
+                int len = 20; // Largo de cada linea
+
+                // La condición es que las líneas las pintemos con una coordenada menor a 100
+                while(x < 100) {
+                  line(x, y, x, y + len);
+                  x = x + spacing;
+                }
+              </code></pre>
+            </p>
+          </section>
+        </section>
+
+        <!--FUNCIONES -->
+        <section>
+          <section>
+            <h2>Funciones</h2>
+            <p>
+              Cuando un sketch comienza a ser más complejo,
+              no es conveniente tener que todo su código
+              esté en un solo bloque.
+              <br>
+              Porque es confuso y difícil de editar.
+            </p>
+          </section>
+
+          <section>
+            <h2>Funciones</h2>
+            <p>
+              Lo conveniente, y lo
+            </p>
+          </section>
+        </section>
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hjls.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true },
+          { src: 'plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+  </body>
+</html>
